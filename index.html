@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chris Mukonowatsauka | Accounting Portfolio</title>
+<meta name="description" content="Accounting portfolio of Chris Mukonowatsauka: reconciliation tools, Excel and Power Query automation, and a small-business accounting system.">
+<style>
+  :root {
+    --ink: #111;
+    --muted: #555;
+    --line: #d9d9d9;
+    --soft: #f5f5f5;
+    --paper: #fff;
+    --serif: Georgia, "Times New Roman", Times, serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+
+  /* Header */
+  header { border-bottom: 1px solid var(--ink); padding: 56px 0 36px; }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    line-height: 1.15;
+  }
+  .role { font-size: 1.08rem; margin: 0 0 4px; }
+  .place { color: var(--muted); margin: 0 0 22px; font-size: 0.95rem; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    display: inline-block;
+    padding: 9px 16px;
+    border: 1px solid var(--ink);
+    text-decoration: none;
+    font-size: 0.92rem;
+    line-height: 1.2;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .btn:hover, .btn:focus-visible { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover, .btn.solid:focus-visible { background: var(--paper); color: var(--ink); }
+
+  /* Sections */
+  section { padding: 44px 0 8px; }
+  h2 {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px;
+    margin: 0 0 22px;
+  }
+  .intro { margin: 0 0 26px; max-width: 690px; }
+
+  /* Project cards */
+  .project { border: 1px solid var(--line); padding: 24px 24px 18px; margin-bottom: 20px; }
+  .project-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; flex-wrap: wrap;
+  }
+  h3 { font-family: var(--serif); font-size: 1.3rem; margin: 0; line-height: 1.3; }
+  .date { font-family: var(--serif); font-style: italic; color: var(--muted); font-size: 0.95rem; white-space: nowrap; }
+  .meta { color: var(--muted); font-size: 0.9rem; margin: 2px 0 12px; }
+  .summary { margin: 0 0 14px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; padding: 0; list-style: none; }
+  .tags li { border: 1px solid var(--line); background: var(--soft); padding: 2px 9px; font-size: 0.8rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 6px; }
+  .note { font-size: 0.85rem; color: var(--muted); }
+
+  details { border-top: 1px solid var(--line); margin-top: 14px; }
+  summary {
+    cursor: pointer; list-style: none; padding: 12px 0 6px;
+    font-weight: 600; font-size: 0.95rem;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "+"; display: inline-block; width: 1.2em; font-weight: 400; }
+  details[open] summary::before { content: "\2212"; }
+  .case h4 {
+    font-family: var(--serif); font-size: 0.82rem; letter-spacing: 0.14em;
+    text-transform: uppercase; margin: 16px 0 4px;
+  }
+  .case p { margin: 0 0 6px; }
+  .case ul { margin: 4px 0 6px; padding-left: 20px; }
+  .case li { margin-bottom: 3px; }
+
+  /* About & contact */
+  .about p { max-width: 690px; margin: 0 0 12px; }
+  dl.facts { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 16px 0 0; }
+  dl.facts dt { font-weight: 600; }
+  dl.facts dd { margin: 0; }
+
+  footer { border-top: 1px solid var(--ink); margin-top: 48px; padding: 22px 0 40px; color: var(--muted); font-size: 0.85rem; }
+
+  @media (max-width: 560px) {
+    header { padding-top: 38px; }
+    .project { padding: 18px 16px 12px; }
+    dl.facts { grid-template-columns: 1fr; gap: 0; }
+    dl.facts dd { margin-bottom: 10px; }
+  }
+  @media print {
+    .btn, .actions { display: none; }
+    details > *:not(summary) { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Chris Mukonowatsauka</h1>
+    <p class="role">Accountant &nbsp;|&nbsp; Reconciliations, Controls &amp; Excel Automation</p>
+    <p class="place">Harare, Zimbabwe &nbsp;·&nbsp; CIMA candidate (E2 passed, P2 in progress)</p>
+    <nav class="links" aria-label="Contact links">
+      <a class="btn solid" href="cv.pdf" target="_blank" rel="noopener">Download CV</a>
+      <a class="btn" href="https://www.linkedin.com/in/cmkn" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="mailto:chrismukonowatsauka@gmail.com">Email</a>
+      <a class="btn" href="https://github.com/chrismukonowatsauka" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="projects" aria-labelledby="projects-title">
+    <h2 id="projects-title">Projects</h2>
+    <p class="intro">Tools I built to make day-to-day accounting work faster and more reliable, mostly in response to real problems in supplier, bank and branch sales reconciliations. Live versions run on demo data only; no employer data is published.</p>
+
+    <!-- Supplier Reconciliation -->
+    <article class="project" id="supplier-recon">
+      <div class="project-head">
+        <h3>Supplier Reconciliation Tool</h3>
+        <span class="date">Jan 2026</span>
+      </div>
+      <p class="meta">GAIN Cash and Carry · built as an Accounts Clerk</p>
+      <p class="summary">Paste a supplier statement and the ledger, and get a full reconciliation that explains every difference.</p>
+      <ul class="tags"><li>Accounts payable</li><li>Supplier reconciliations</li><li>Excel</li><li>JavaScript</li></ul>
+      <div class="actions">
+        <a class="btn solid" href="https://chrismukonowatsauka.github.io/supplier-recon/" target="_blank" rel="noopener">Open tool</a>
+      </div>
+      <details class="case">
+        <summary>Case study</summary>
+        <h4>Problem</h4>
+        <p>I was responsible for keeping 40+ supplier accounts accurate. Matching each statement to the Openbravo ledger line by line was slow, and errors such as duplicated invoices or wrong invoice numbers were easy to miss.</p>
+        <h4>What I built</h4>
+        <p>A reconciliation template in Excel, later rebuilt as a browser tool. The user pastes two data sets, the supplier statement and the ledger, and the tool produces the reconciliation.</p>
+        <h4>Checks it runs</h4>
+        <ul>
+          <li>Duplicate entries and invoices posted twice</li>
+          <li>Wrong or transposed invoice numbers</li>
+          <li>Overstated and understated invoices</li>
+          <li>Payments and credit notes matched to the statement, with unmatched payments listed</li>
+          <li>Genuine partial receipts (goods received over two days) recognised, so they are not mistaken for double postings</li>
+        </ul>
+        <h4>Outcome</h4>
+        <p>Differences are listed with a reason, so follow-up with suppliers starts from a clear list instead of a manual search.</p>
+      </details>
+    </article>
+
+    <!-- Bank Reconciliation -->
+    <article class="project" id="bank-recon">
+      <div class="project-head">
+        <h3>Bank Reconciliation Tool</h3>
+        <span class="date">Mar 2026</span>
+      </div>
+      <p class="meta">GAIN Cash and Carry · built as an Accounts Clerk</p>
+      <p class="summary">Matches bank statement lines to cashbook entries and lists unmatched items and reconciling differences.</p>
+      <ul class="tags"><li>Bank reconciliations</li><li>Cashbook</li><li>Excel</li><li>JavaScript</li></ul>
+      <div class="actions">
+        <a class="btn solid" href="https://chrismukonowatsauka.github.io/Bank-Recon/" target="_blank" rel="noopener">Open tool</a>
+      </div>
+      <details class="case">
+        <summary>Case study</summary>
+        <h4>Problem</h4>
+        <p>Matching bank statement lines to the cashbook by hand was slow, and the result depended on who did it.</p>
+        <h4>What I built</h4>
+        <p>A bank-to-ledger reconciliation template, later rebuilt as a browser tool that applies the same logic without needing the workbook.</p>
+        <h4>How it works</h4>
+        <ul>
+          <li>Matches bank lines to cashbook entries</li>
+          <li>Lists unmatched items on each side</li>
+          <li>Produces the reconciling differences in a standard reconciliation statement</li>
+        </ul>
+        <h4>Outcome</h4>
+        <p>A simple layout that non-specialist staff can use, with the same matching logic every time.</p>
+      </details>
+    </article>
+
+    <!-- Cashbook Combiner -->
+    <article class="project" id="cashbook-combiner">
+      <div class="project-head">
+        <h3>Cashbook Combiner</h3>
+        <span class="date">Jul 2026</span>
+      </div>
+      <p class="meta">GAIN Cash and Carry · portfolio version uses fictional data</p>
+      <p class="summary">Combines about 36 bank and currency cashbook worksheets into one searchable table with Power Query.</p>
+      <ul class="tags"><li>Cashbook</li><li>Power Query</li><li>Multi-currency</li></ul>
+      <div class="actions">
+        <a class="btn solid" href="https://chrismukonowatsauka.github.io/cashbook-combiner/" target="_blank" rel="noopener">Open project</a>
+      </div>
+      <details class="case">
+        <summary>Case study</summary>
+        <h4>Problem</h4>
+        <p>The cashbook is split into a separate worksheet for each bank and currency. Finding a branch's transfers or swipes meant searching sheet by sheet.</p>
+        <h4>What I built</h4>
+        <p>A Power Query process that merges every worksheet into one table and standardises the different column layouts used by each bank.</p>
+        <h4>Outcome</h4>
+        <ul>
+          <li>One table that can be filtered by branch, bank and currency</li>
+          <li>Transfers and swipes found without searching around 36 sheets one by one</li>
+        </ul>
+      </details>
+    </article>
+
+    <!-- Synflow -->
+    <article class="project" id="synflow">
+      <div class="project-head">
+        <h3>Synflow</h3>
+        <span class="date">Aug 2026</span>
+      </div>
+      <p class="meta">Personal project · accounting system for a family supermarket</p>
+      <p class="summary">A forms-based accounting system covering purchases, sales, stock, empties, supplier payments, trial balance and P&amp;L.</p>
+      <ul class="tags"><li>Small-business accounting</li><li>Trial balance</li><li>Multi-currency</li><li>Excel</li></ul>
+      <div class="actions">
+        <a class="btn solid" href="https://chrismukonowatsauka.github.io/bottle-store-erp/" target="_blank" rel="noopener">Open project</a>
+      </div>
+      <details class="case">
+        <summary>Case study</summary>
+        <h4>Problem</h4>
+        <p>A small family supermarket needed proper records for stock, cash and suppliers, without the cost or complexity of a full ERP.</p>
+        <h4>What I built</h4>
+        <ul>
+          <li>Simple forms for purchases, sales, stock, returnable empties and supplier payments</li>
+          <li>Automatic trial balance and profit and loss statement</li>
+          <li>ZAR and USD cross-currency supplier settlement with exchange-difference postings</li>
+        </ul>
+        <h4>Outcome</h4>
+        <p>Validated through 6 test scenarios, each closing with a zero trial-balance difference.</p>
+      </details>
+    </article>
+
+    <!-- Sales Reconciliation -->
+    <article class="project" id="sales-recon">
+      <div class="project-head">
+        <h3>Sales Reconciliation Workbook</h3>
+        <span class="date">Jul 2026</span>
+      </div>
+      <p class="meta">GAIN Cash and Carry · internal workbook</p>
+      <p class="summary">Reconciles Openbravo sales exports to branch cash-up reports by currency (USD, ZiG, ZAR) and Nostro bank.</p>
+      <ul class="tags"><li>Sales and cash reconciliations</li><li>ZiG / USD / ZAR</li><li>Excel</li></ul>
+      <div class="actions">
+        <span class="note">Internal workbook. Demo version available on request.</span>
+      </div>
+      <details class="case">
+        <summary>Case study</summary>
+        <h4>Problem</h4>
+        <p>I reconcile daily sales and banking for 8 branches (about US$2.6M in monthly deposits) across three currencies. Each branch's figures had to be matched by hand from the system export and the cashier's reports.</p>
+        <h4>What I built</h4>
+        <p>A paste-in workbook: paste the Openbravo sales export and the branch cash-up report, and live formulas produce the reconciliation.</p>
+        <h4>How it works</h4>
+        <ul>
+          <li>Splits sales by currency and by Nostro bank</li>
+          <li>Calculates reconciling items such as card swipes, transfers and manual invoices</li>
+          <li>Leaves one daily variance per currency to investigate</li>
+        </ul>
+        <h4>Outcome</h4>
+        <p>Investigation starts from a single variance per currency per day, and the formulas stay live so every figure can be traced.</p>
+      </details>
+    </article>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="about-title">
+    <h2 id="about-title">About</h2>
+    <p>I am a Regional Accountant (Assistant Accountant) at GAIN Cash and Carry in Harare, with 3+ years' experience in wholesale and retail, FMCG and logistics accounting. My work covers accounts payable, supplier and bank reconciliations, multi-currency sales and banking reconciliations, input VAT and stock control.</p>
+    <p>I hold a Bachelor of Accountancy (Honours) from the University of Zimbabwe and am working through CIMA at Management Level.</p>
+    <dl class="facts">
+      <dt>Systems</dt><dd>Openbravo ERP, Pastel Accounting, Predictiv ERP, ZIMRA FDS</dd>
+      <dt>Tools</dt><dd>Advanced Excel, Power Query, PivotTables, Power BI</dd>
+      <dt>Contact</dt><dd><a href="mailto:chrismukonowatsauka@gmail.com">chrismukonowatsauka@gmail.com</a></dd>
+    </dl>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Chris Mukonowatsauka · Harare, Zimbabwe</div>
+</footer>
+
+</body>
+</html>
